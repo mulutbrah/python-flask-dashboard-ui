@@ -124,7 +124,7 @@ def index():
     task_10.plot.barh()
 
     # Tambahkan hasil result plot pada fungsi render_template()
-    return render_template('index.html', stats=stats, result=result, result2=result2, result3=result3)
+    return render_template('index.html', stats=stats, result=result, result2=result2, result3=result3, result4=task_10)
 
 if __name__ == "__main__": 
     app.run(debug=True)
