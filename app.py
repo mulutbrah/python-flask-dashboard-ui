@@ -117,14 +117,18 @@ def index():
     ## Buatlah sebuah plot yang menampilkan insight di dalam data 
     
     ## Give me top#10 best selling app (by install)?
-    task_10 = df2.groupby('Category').agg({
+    result4 = df2.groupby('Category').agg({
         'Installs': 'sum',
-    }).sort_values('Installs', ascending=False).head(10)
+    }).sort_values('Installs', ascending=False).head(10).plot.barh()
 
-    task_10.plot.barh()
+    figfile = BytesIO()
+    plt.savefig(figfile, format='png')
+    figfile.seek(0)
+    figdata_png = base64.b64encode(figfile.getvalue())
+    result4 = str(figdata_png)[2:-1]
 
     # Tambahkan hasil result plot pada fungsi render_template()
-    return render_template('index.html', stats=stats, result=result, result2=result2, result3=result3, result4=task_10)
+    return render_template('index.html', stats=stats, result=result, result2=result2, result3=result3, result4=result4)
 
 if __name__ == "__main__": 
     app.run(debug=True)
