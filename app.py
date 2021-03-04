@@ -115,9 +115,13 @@ def index():
     result3 = str(figdata_png)[2:-1]
 
     ## Buatlah sebuah plot yang menampilkan insight di dalam data 
-    ____________________________
-    ____________________________
-    ____________________________
+    
+    ## Give me top#10 best selling app (by install)?
+    task_10 = df2.groupby('Category').agg({
+        'Installs': 'sum',
+    }).sort_values('Installs', ascending=False).head(10)
+
+    task_10.plot.barh()
 
     # Tambahkan hasil result plot pada fungsi render_template()
     return render_template('index.html', stats=stats, result=result, result2=result2, result3=result3)
