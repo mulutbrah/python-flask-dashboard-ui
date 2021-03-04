@@ -59,8 +59,8 @@ def index():
 
     ## Bar Plot
     cat_order = df2.groupby('Category').agg({
-    'App' : 'count'
-        }).rename({'Category':'Total'}, axis=1).sort_values('App', ascending=False).head()
+        'App' : 'count'
+    }).rename({'Category':'Total'}, axis=1).sort_values('App', ascending=False).head()
     X = cat_order.index
     Y = cat_order['App']
     my_colors = 'rgbkymc'
