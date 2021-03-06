@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 
+# Uncomment line below if you run this project on Mac
+# plt.switch_backend('Agg')
+
 app = Flask(__name__)
 
 playstore = pd.read_csv('data/googleplaystore.csv')
@@ -120,6 +123,7 @@ def index():
     result4 = df2.groupby('Category').agg({
         'Installs': 'sum',
     }).sort_values('Installs', ascending=False).head(10).plot.barh()
+    plt.savefig('top_10_best_selling.png',bbox_inches="tight") 
 
     figfile = BytesIO()
     plt.savefig(figfile, format='png')
